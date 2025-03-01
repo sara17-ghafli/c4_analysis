@@ -1,0 +1,24 @@
+Explanation of Changes
+1. Lexical Analysis (next()):
+added a condition to recognize the % character as the Mod token. This allows the lexer to correctly identify modulus operators in the source code.
+2. Expression Parsing (expr()):
+added a case to handle the Mod token during expression parsing.
+When a modulus operator is encountered, we emit the following virtual machine instructions:
+PSH: Push the left operand onto the stack.
+expr(Inc): Recursively parse the right operand.
+MOD: Emit the MOD instruction, which will perform the modulus operation.
+3. Virtual Machine (main()):
+added a case to handle the MOD opcode during virtual machine execution.
+When the MOD opcode is encountered, we:
+Pop the left operand from the stack.
+Perform the modulus operation (a = *sp++ % a).
+Store the result in the a register.
+. How Changes Affect Compiler Behavior
+
+New Operator Support:
+The compiler now supports the modulus operator (%) in C4 source code.
+This allows programmers to perform remainder calculations.
+Virtual Machine Execution:
+The virtual machine can now execute the MOD instruction, which performs the modulus operation.
+For Example:
+Now we can use code like: int a = 10 % 3; in the C4 code.

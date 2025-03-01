@@ -1,0 +1,31 @@
+Total LOC: 525
+Function LOC:
+next(): 82Lines
+expr(): 143 Lines
+stmt(): 46 Lines
+main(): 194 Lines
+Cyclomatic Complexity:
+next: High
+expr: Very high
+stmt: Medium
+main: Medium
+Number of Functions: 4
+Function Sizes (LOC):
+next(): 82Lines
+expr(): 143 Lines
+stmt(): 46 Lines
+main(): 194 Lines
+Global Variables: p, lp, data, e, le, id, sym, tk, ival, ty, loc, line, src, debug
+Global Variable Usage: Heavily used throughout the compiler
+Unique Tokens: Keywords, operators, identifiers, numbers, string literals
+Token Frequency:
+Keywords: Relatively frequent
+Operators: Very frequent
+Identifiers: Very frequent
+Numbers: Frequent
+Branch Count: Numerous
+Loop Count: Several
+Branch Nesting: Moderate
+Loop Nesting: Moderate
+Heap Allocations: Memory pools for symbol table, generated code, data, stack, source code.
+Stack Allocations: Function call frames, local variables, expression evaluation

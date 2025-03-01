@@ -1,0 +1,67 @@
+1. What is the purpose of the next() function, and how does it contribute to the compilation process?
+ANS: The next() function in C4 performs lexical analysis, also known as tokenization. Its primary purpose is to read the source code character by character and group these characters into meaningful units called tokens. These tokens represent the basic building blocks of the programming language, such as keywords, identifiers, operators, and constants.
+The next() function contributes to the compilation process by:
+Breaking down the source code: It transforms the raw character stream into a structured sequence of tokens, making the subsequent parsing stage more manageable.
+Identifying keywords and identifiers: It distinguishes between reserved keywords (like if, while, int) and user-defined identifiers (variable and function names).
+Extracting literal values: It converts numeric and string literals into their corresponding internal representations.
+Maintaining the symbol table: It adds new identifiers to the symbol table, tracking their properties (type, class, value).
+Preparing for parsing: By providing tokens in a well-defined order, it sets the stage for the parser to analyze the program's structure.
+In essence, next() acts as the first stage of the compiler, transforming the source code into a form that the parser can understand.
+
+2. How does C4 handle symbol resolution (e.g., variables, functions)?
+ANS: C4 handles symbol resolution through a simple symbol table implemented as an array. When an identifier is encountered during lexical analysis (next() function), it's looked up in the symbol table.
+Symbol Table Structure:
+The symbol table stores information about each identifier, including its name, hash value, type, class (e.g., global, local, function), and value (address or constant).
+Lookup and Insertion:
+During tokenization, when an identifier is found, its hash value is calculated, and the symbol table is searched.
+If a matching identifier is found, its information is retrieved.
+If the identifier is not found, a new entry is created in the symbol table.
+Scope:
+C4 handles rudimentary scoping through the stmt() function, when it enters and exits function and compound blocks.
+When local variables are declared, their previous values and types are stored, and their symbol table entry is changed to local. Upon exiting the local scope, the original values are restored.
+Global vs. Local:
+The "class" field in the symbol table distinguishes between global and local variables, as well as functions.
+This allows the compiler to generate appropriate code for accessing variables in different scopes.
+Function Calls:
+Function names are also stored in the symbol table, along with their addresses in the generated code.
+This allows the compiler to generate JSR (jump to subroutine) instructions for function calls.
+
+3. What are the limitations of C4 as a compiler? What features of C does it not support?
+ANS: C4 is a minimalist C compiler, designed for simplicity and self-hosting. As such, it has several limitations:
+Limited Data Types:
+It primarily supports char, int, and pointers.
+It lacks support for floating-point types, structures, unions, and bit fields.
+Restricted Control Flow:
+It supports if, while, and return statements, but lacks support for switch, do-while, and for loops.
+No Initializers:
+It does not support initializing global or local variables during declaration.
+No Preprocessor:
+It does not have a preprocessor, so features like #include, #define, and conditional compilation are not supported.
+Limited Standard Library:
+It provides a small set of system calls, but lacks a comprehensive standard library.
+No Static Variables:
+It does not support static variables.
+No complex data structures:
+Structures and unions are not supported.
+
+4. How does C4 achieve self-hosting (i.e., compiling itself)? What are the implications of this design?
+ANS: C4 achieves self-hosting by:
+Minimal Feature Set:
+It implements only the essential features of C needed for its own compilation.
+Virtual Machine:
+It compiles C code into a simple virtual machine instruction set, which can be easily executed.
+Bootstrapping:
+Initially, C4 was likely compiled using another C compiler.
+Once a working version of C4 was available, it could then compile its own source code.
+Implications of this design:
+
+Portability:
+C4's small size and virtual machine architecture make it relatively portable to different platforms.
+Simplicity:
+The minimalist design makes C4 easier to understand and modify.
+Educational Value:
+C4 serves as an excellent example for learning about compiler design and implementation.
+Limited Practical Use:
+Due to its limitations, C4 is not suitable for general-purpose programming.
+Bootstrapping Complexity:
+While self hosting is powerful, the initial bootstrapping process can be complex.
